@@ -1,0 +1,12 @@
+.DS_Store
+.NERD*
+.vscode/
+build/
+imgui.ini
+.terraform/
+terraform.tfvars
+engine/
+.cache/
+*.swp
+*.swn
+*.swo
