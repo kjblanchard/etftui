@@ -2,26 +2,41 @@ local logWindow = {}
 local engine = require("Engine")
 local tui = require("TUI")
 
-local ptr = nil
--- local timeTextPtr = nil
+local panelPtr = nil
 local messageTextPtr = nil
-local previousMessages = {}
+local messageText = ""
+local numPreviousMessages = 0
+
 
 local function logFunc(timeMessage, message, logLevel)
-    -- tui.UpdateText(messageTextPtr, timeMessage .. " | " .. message)
+    if numPreviousMessages == 0 then
+        messageText = string.format("%s | %s", timeMessage, message)
+        numPreviousMessages = numPreviousMessages + 1
+    elseif numPreviousMessages < 30 then
+        messageText = string.format("%s\n%s | %s", messageText, timeMessage, message)
+        numPreviousMessages = numPreviousMessages + 1
+    else
+        local firstNewline = string.find(messageText, "\n")
+        if firstNewline then
+            messageText = string.sub(messageText, firstNewline + 1)
+        end
+        messageText = string.format("%s\n%s | %s", messageText, timeMessage, message)
+    end
+    if messageTextPtr then
+        tui.UpdateText(messageTextPtr, messageText)
+    end
 end
 
 function logWindow.InitializeLogWindow()
     engine.Log.SetLogFunction(logFunc)
-    ptr = tui.NewPanelWithNameAndBorder(140, 10, 2, 65, "Debug Log")
-    messageTextPtr = tui.NewText(ptr, 0, 0, "Initial Debug Message\nSecondMessage\n")
-    tui.AddTextToPanel(ptr, messageTextPtr)
-    -- engine.Log.LogWarn("What even is this message")
+    panelPtr = tui.NewPanelWithNameAndBorder(140, 10, 2, 65, "Debug Log")
+    messageTextPtr = tui.NewText(panelPtr, 0, 0, "")
+    tui.AddTextToPanel(panelPtr, messageTextPtr)
 end
 
 function logWindow.Draw()
-    if ptr ~= nil then
-        tui.DrawPanel(ptr)
+    if panelPtr ~= nil then
+        tui.DrawPanel(panelPtr)
     end
 end
 

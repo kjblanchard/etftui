@@ -1,0 +1,2 @@
+breakpoint set --file panel.c --line 58
+r
