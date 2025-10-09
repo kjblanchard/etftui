@@ -4,26 +4,22 @@ local tui = require("TUI")
 
 local panelPtr = nil
 local messageTextPtr = nil
-local messageText = ""
-local numPreviousMessages = 0
+local logMessagePrefix = ""
 
 
 local function logFunc(timeMessage, message, logLevel)
-    if numPreviousMessages == 0 then
-        messageText = string.format("%s | %s", timeMessage, message)
-        numPreviousMessages = numPreviousMessages + 1
-    elseif numPreviousMessages < 30 then
-        messageText = string.format("%s\n%s | %s", messageText, timeMessage, message)
-        numPreviousMessages = numPreviousMessages + 1
-    else
-        local firstNewline = string.find(messageText, "\n")
-        if firstNewline then
-            messageText = string.sub(messageText, firstNewline + 1)
-        end
-        messageText = string.format("%s\n%s | %s", messageText, timeMessage, message)
+    local messageText = string.format("%s%s | %s", logMessagePrefix, timeMessage, message)
+    local colorPair = engine.Log.LogColorsWhite
+    if logLevel == engine.Log.LogLevelsWarn then
+        colorPair = engine.Log.LogColorsYellow
+    elseif logLevel == engine.Log.LogLevelsError or logLevel == engine.Log.LogLevelsCritical then
+        colorPair = engine.Log.LogColorsRed
     end
     if messageTextPtr then
-        tui.UpdateText(messageTextPtr, messageText)
+        tui.AddTextToTextbox(messageTextPtr, messageText, colorPair)
+    end
+    if logMessagePrefix == "" then
+        logMessagePrefix = "\n"
     end
 end
 

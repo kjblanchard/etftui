@@ -23,7 +23,7 @@ option(ENGINE_CACHED "Is the engine cloned locally in the ./engine directory or 
 option(DEBUG_CMAKE_VARIABLES "Print out all debug variables near end of configure" OFF)
 option(DEBUG_BUILD_TIME "Add in the pch that I think will be changing a bit" OFF)
 # If ON, gives a debug message when building about vm space or something, nanomalloc.
-option(DEBUG_ASAN "Use asan for leak and address sanitization checks when debug mode" OFF)
+option(DEBUG_ASAN "Use asan for leak and address sanitization checks when debug mode" ON)
 option(CONVERT_JSON_TO_LUA_IN_ASEPRITE "Convert all json files in aseprite folder for use during install step" OFF)
 option(CREATE_MACOS_TUI "Does this make a macos TUI?" YES)
 option(CREATE_MACOS_BUNDLE "Does this create a bundle when building on MACOS? Only used if not making a TUI" NO)
