@@ -50,6 +50,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(CREATE_MACOS_TUI)
   add_definitions(-Dtui)
+  add_definitions(-Dminiaudio)
 endif(CREATE_MACOS_TUI)
 
 if(imgui AND NOT CREATE_MACOS_TUI)
