@@ -4,7 +4,7 @@ local tui = require("TUI")
 local panelPtr = nil
 logWindow.messageTextPtr = nil
 local logMessagePrefix = ""
-local windowConfig = { x = 84, y = 65, w = 160, h = 10 }
+local windowConfig = { x = 84, y = 63, w = 160, h = 10 }
 local setColor = function(colorInt) tui.AddColor(logWindow.messageTextPtr, colorInt) end
 local function reset()
     tui.SetTextboxStyle(logWindow.messageTextPtr, engine.Log.LogStyleDefault)

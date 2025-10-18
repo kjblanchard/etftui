@@ -4,7 +4,7 @@ local tui = require("TUI")
 local panelPtr = nil
 local messageTextPtr = nil
 local logMessagePrefix = ""
-local windowConfig = { x = 2, y = 65, w = 80, h = 10 }
+local windowConfig = { x = 2, y = 63, w = 80, h = 10 }
 
 
 local function logFunc(timeMessage, message, logLevel)

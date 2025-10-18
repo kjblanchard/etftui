@@ -10,3 +10,4 @@ engine/
 *.swp
 *.swn
 *.swo
+*errors.log
