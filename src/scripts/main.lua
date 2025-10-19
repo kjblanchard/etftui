@@ -7,19 +7,14 @@ if os.getenv("LOCAL_LUA_DEBUGGER_VSCODE") == "1" then
     require("lldebugger").start()
 end
 
--- local gamestate = require("gameState")
--- local messageTimer = 0.0
--- local messageTime = 1.0
 
 local function handleInput()
     engine.Input.Update()
 end
 
+
 local function update()
     engine.EngineUpdate()
-    if engine.Input.KeyboardKeyJustPressed('q') then
-        engine.Quit()
-    end
     -- messageTimer = messageTimer + gamestate.DeltaTimeSeconds
     -- if messageTimer > messageTime then
     --     logWindow.AddFormattedText(
@@ -28,13 +23,13 @@ local function update()
     --     engine.Log.LogWarn("Is work warn?")
     --     messageTimer = messageTimer - messageTime
     -- end
-    -- terminal.Run()
+    terminal.Run()
 end
 
 local function draw()
     debugLogWindow.Draw()
     logWindow.Draw()
-    -- terminal.Draw()
+    terminal.Draw()
 end
 
 
@@ -47,4 +42,4 @@ engine.Audio.SetGlobalSFXVolume(config.audio.sfxVolume)
 engine.Audio.PlayBGM("town2")
 debugLogWindow.InitializeLogWindow()
 logWindow.InitializeLogWindow()
--- terminal.Initialize()
+terminal.Initialize()

@@ -33,8 +33,6 @@ function logWindow.AddFormattedText(str)
         end
     end
     reset()
-    -- second piece is reges .. they are capture groups so it will return it in pairs.
-    -- word, tag.  Capture text before { and then capture text before }.  So text and command
     if logMessagePrefix == "" then
         logMessagePrefix = "\n"
     end
