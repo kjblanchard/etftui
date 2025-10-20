@@ -10,7 +10,7 @@ APPLE_GENERATOR ?= Xcode
 CONFIGURE_COMMAND ?= "cmake"
 EMSCRIPTEN_CONFIGURE_COMMAND = "emcmake cmake"
 BUILD_TYPE ?= Debug
-DEFAULT_IMGUI ?= ON
+DEFAULT_IMGUI ?= OFF
 SYSTEM_PACKAGES ?= ON
 ENGINE_CACHED ?= ON
 BUILD_COMMAND ?= cmake --build $(BUILD_DIR) --config $(BUILD_TYPE)
@@ -41,7 +41,7 @@ build:
 install:
 	@cmake --install $(BUILD_DIR) --config $(BUILD_TYPE)
 run:
-	@./build/bin/$(EXECUTABLE_NAME)
+	@open ./build/bin/$(EXECUTABLE_NAME).app || ./build/bin/$(EXECUTABLE_NAME)
 debug: build
 	@lldb -s breakpoints.lldb ./build/bin/$(EXECUTABLE_NAME)
 

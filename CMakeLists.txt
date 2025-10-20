@@ -17,7 +17,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Should we include Imgui stuffs
-option(imgui "Include ImGui support" ON)
+option(imgui "Include ImGui support" OFF)
 option(SYSTEM_PACKAGES "Use system packages if available" ON)
 option(ENGINE_CACHED "Is the engine cloned locally in the ./engine directory or should it be downloaded" ON)
 option(DEBUG_CMAKE_VARIABLES "Print out all debug variables near end of configure" OFF)
@@ -25,8 +25,10 @@ option(DEBUG_BUILD_TIME "Add in the pch that I think will be changing a bit" OFF
 # If ON, gives a debug message when building about vm space or something, nanomalloc.
 option(DEBUG_ASAN "Use asan for leak and address sanitization checks when debug mode" ON)
 option(CONVERT_JSON_TO_LUA_IN_ASEPRITE "Convert all json files in aseprite folder for use during install step" OFF)
-option(CREATE_MACOS_TUI "Does this make a macos TUI?" YES)
-option(CREATE_MACOS_BUNDLE "Does this create a bundle when building on MACOS? Only used if not making a TUI" NO)
+option(CREATE_MACOS_TUI "Does this make a macos TUI?" OFF)
+option(SDL_BACKEND "Does this use SDL backend?" ON)
+option(SDL_GL "Does this use SDL GL backend?" ON)
+option(CREATE_MACOS_BUNDLE "Does this create a bundle when building on MACOS? Only used if not making a TUI" ON)
 if(DEBUG_BUILD_TIME)
   set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 endif(DEBUG_BUILD_TIME)
@@ -50,8 +52,15 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(CREATE_MACOS_TUI)
   add_definitions(-Dtui)
-  add_definitions(-Dminiaudio)
 endif(CREATE_MACOS_TUI)
+
+if(SDL_BACKEND)
+  add_definitions(-Dsdl)
+endif(SDL_BACKEND)
+
+if(SDL_GL)
+  add_definitions(-Dsdlgl)
+endif(SDL_GL)
 
 if(imgui AND NOT CREATE_MACOS_TUI)
   add_definitions(-Dimgui)
