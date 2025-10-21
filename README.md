@@ -1,6 +1,6 @@
-# TUI POC
+# Escape The Fate
 
-- Make a small TUI poc?
+- Cross Platform 2d RPG demo, using custom Engine written in C.  Learn OpenGL
 
 ## Details
 
