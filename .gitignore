@@ -2,7 +2,6 @@
 .NERD*
 .vscode/
 build/
-imgui.ini
 .terraform/
 terraform.tfvars
 engine/
