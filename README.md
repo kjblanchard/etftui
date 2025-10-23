@@ -1,6 +1,6 @@
 # Escape The Fate
 
-- Cross Platform 2d RPG demo, using custom Engine written in C.  Learn OpenGL
+- Cross Platform 2d card game roguelike RPG demo, using custom Engine written in C. Lua scripting. Opengl 3.3 and OpenglES 3.0  Learn OpenGL.
 
 ## Details
 

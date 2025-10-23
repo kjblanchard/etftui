@@ -40,7 +40,9 @@ build:
 install:
 	@cmake --install $(BUILD_DIR) --config $(BUILD_TYPE)
 run:
-	@open ./build/bin/$(EXECUTABLE_NAME).app || ./build/bin/$(EXECUTABLE_NAME)
+# 	@open ./build/bin/$(EXECUTABLE_NAME).app || ./build/bin/$(EXECUTABLE_NAME)
+	./build/bin/EscapeTheFate.app/Contents/MacOS/EscapeTheFate
+
 debug: build
 	@lldb -s breakpoints.lldb ./build/bin/$(EXECUTABLE_NAME)
 
@@ -91,6 +93,11 @@ tiled:
 	@$(foreach file,$(TILED_EXPORT_MAPS),\
 		$(TILED_PATH) --export-map --detach-templates --embed-tilesets --resolve-types-and-properties lua $(TILED_FOLDER_PATH)/$(file).tmj $(TILED_FOLDER_PATH)/$(file).lua; \
 	)
+
+# Used when you want to run instruments when not using xcode to build (local dev)
+codesign:
+	@codesign --force --deep --sign - --entitlements cmake/EscapeTheFate.entitlements build/bin/EscapeTheFate.app
+
 aseprite:
 	@echo "Converting Aseprite JSON files to Lua..."
 	@python3 $(JSON_TO_LUA_SCRIPT) --dir $(ASEPRITE_DIR)
