@@ -18,7 +18,7 @@ end
 
 local function draw()
     if texture and shader then
-        engine.DrawTexture(texture, shader, 0, 0)
+        engine.DrawTexture(texture, shader, { x = 0, y = 0, w = 48, h = 48 }, { x = 0, y = 0, w = 48, h = 48 })
     end
 end
 

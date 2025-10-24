@@ -20,7 +20,7 @@ option(DEBUG_CMAKE_VARIABLES "Print out all debug variables near end of configur
 option(DEBUG_BUILD_TIME "Add in the pch that I think will be changing a bit" OFF)
 # If ON, gives a debug message when building about vm space or something, nanomalloc. If ON, Memory shows super high
 # usage.. it's wild, to get an accurate reading switch to off.
-option(DEBUG_ASAN "Use asan for leak and address sanitization checks when debug mode" ON)
+option(DEBUG_ASAN "Use asan for leak and address sanitization checks when debug mode" OFF)
 option(CONVERT_JSON_TO_LUA_IN_ASEPRITE "Convert all json files in aseprite folder for use during install step" OFF)
 option(SDL_BACKEND "Does this use SDL backend?" ON)
 option(SDL_GL "Does this use SDL GL backend?" ON)
@@ -44,10 +44,10 @@ set(EXECUTABLE_TARGET_NAME EscapeTheFate)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Add defines for specific builds
 if(SDL_BACKEND)
-  add_definitions(-Dsdl)
+  add_definitions(-Dsdlbackend)
 endif(SDL_BACKEND)
 if(SDL_GL)
-  add_definitions(-Dsdlgl)
+  add_definitions(-Dsdlglbackend)
 endif(SDL_GL)
 
 if(DEBUG_CMAKE_VARIABLES)

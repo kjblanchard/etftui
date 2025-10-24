@@ -10,7 +10,7 @@ if(EMSCRIPTEN)
       CACHE STRING "Use html" FORCE)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
   set(LINK_FLAGS
-      "${LINK_FLAGS} -s ALLOW_MEMORY_GROWTH=1 -s STACK_SIZE=1mb -s EXPORTED_RUNTIME_METHODS=cwrap -s 'DEFAULT_LIBRARY_FUNCS_TO_INCLUDE=[\"$autoResumeAudioContext\",\"$dynCall\"]'"
+      "${LINK_FLAGS} -s ALLOW_MEMORY_GROWTH=1 -s FULL_ES3=1 -s USE_WEBGL2=1 -s STACK_SIZE=1mb -s EXPORTED_RUNTIME_METHODS=cwrap -sMAX_WEBGL_VERSION=2 -sMIN_WEBGL_VERSION=2 -s 'DEFAULT_LIBRARY_FUNCS_TO_INCLUDE=[\"$autoResumeAudioContext\",\"$dynCall\"]'"
   )
 elseif(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET
@@ -48,7 +48,6 @@ elseif(EMSCRIPTEN)
       "${LINK_FLAGS} -O0 -g -s SAFE_HEAP=2 -s STACK_OVERFLOW_CHECK=1 \
    --preload-file ${CMAKE_SOURCE_DIR}/assets@/assets \
    --preload-file ${CMAKE_SOURCE_DIR}/src/scripts@/assets/lua/\
-   --preload-file ${CMAKE_SOURCE_DIR}/src/dialog@/assets/lua/\
    --preload-file ${CMAKE_SOURCE_DIR}/engine/scripting@/assets/lua/")
 
 endif(APPLE)

@@ -1,4 +1,7 @@
-#version 330 core
+#version 300 es
+precision mediump float;
+
+// Cross-platform attribute definitions
 layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>
 out vec2 TexCoords;
 
@@ -6,33 +9,15 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
-// New: Source rectangle and texture info
-uniform vec4 srcRect;      // x, y, w, h — pixel coordinates
-uniform vec2 textureSize;  // texture->Width, texture->Height
-
 void main()
 {
-    // Base texture coordinates (0..1 quad)
-    vec2 base = vertex.zw;
-
-    // Convert the srcRect from pixel space to normalized texture coordinates
-    vec2 uv0 = srcRect.xy / textureSize;             // bottom-left corner (in UV)
-    vec2 uv1 = (srcRect.xy + srcRect.zw) / textureSize; // top-right corner (in UV)
-
-    // If your textures appear vertically flipped, flip the Y mapping:
-    // TexCoords = mix(vec2(uv0.x, uv1.y), vec2(uv1.x, uv0.y), base);
-    // Otherwise, use this line:
-    TexCoords = mix(uv0, uv1, base);
-
-    // Regular transform
+    TexCoords = vertex.zw;
     gl_Position = projection * view * model * vec4(vertex.xy, 0.0, 1.0);
 }
 
 
 
 
-
-// Old, where it does not use texture coordinates
 // #version 330 core
 // layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>
 
@@ -46,12 +31,10 @@ void main()
 // {
 //     TexCoords = vertex.zw;
 //     gl_Position = projection * view * model * vec4(vertex.xy, 0.0, 1.0);
+//     // gl_Position = projection * model * vec4(vertex.xy, 0.0, 1.0);
+//     // gl_Position = projection * vec4(vertex.xy, 0.0, 1.0);
+//     // gl_Position = vec4(vertex.xy, 0.0, 1.0);
 // }
-
-// testing
-    // gl_Position = projection * model * vec4(vertex.xy, 0.0, 1.0);
-    // gl_Position = projection * vec4(vertex.xy, 0.0, 1.0);
-    // gl_Position = vec4(vertex.xy, 0.0, 1.0);
 
 
 // #version 330 core
