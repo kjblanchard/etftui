@@ -25,8 +25,8 @@ return {
 		{
 			filename = 'player1 1.aseprite',
 			frame = {
-				x = 0,
-				y = 32,
+				x = 32,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -47,8 +47,8 @@ return {
 		{
 			filename = 'player1 2.aseprite',
 			frame = {
-				x = 0,
-				y = 64,
+				x = 64,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -69,8 +69,8 @@ return {
 		{
 			filename = 'player1 3.aseprite',
 			frame = {
-				x = 0,
-				y = 96,
+				x = 96,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -91,8 +91,8 @@ return {
 		{
 			filename = 'player1 4.aseprite',
 			frame = {
-				x = 0,
-				y = 128,
+				x = 128,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -113,8 +113,8 @@ return {
 		{
 			filename = 'player1 5.aseprite',
 			frame = {
-				x = 0,
-				y = 160,
+				x = 160,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -135,8 +135,8 @@ return {
 		{
 			filename = 'player1 6.aseprite',
 			frame = {
-				x = 0,
-				y = 192,
+				x = 192,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -157,8 +157,8 @@ return {
 		{
 			filename = 'player1 7.aseprite',
 			frame = {
-				x = 0,
-				y = 224,
+				x = 224,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -179,8 +179,8 @@ return {
 		{
 			filename = 'player1 8.aseprite',
 			frame = {
-				x = 0,
-				y = 256,
+				x = 256,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -201,8 +201,8 @@ return {
 		{
 			filename = 'player1 9.aseprite',
 			frame = {
-				x = 0,
-				y = 288,
+				x = 288,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -223,8 +223,8 @@ return {
 		{
 			filename = 'player1 10.aseprite',
 			frame = {
-				x = 0,
-				y = 320,
+				x = 320,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -245,8 +245,8 @@ return {
 		{
 			filename = 'player1 11.aseprite',
 			frame = {
-				x = 0,
-				y = 352,
+				x = 352,
+				y = 0,
 				w = 32,
 				h = 32
 			},
@@ -271,8 +271,8 @@ return {
 		image = 'player1.bmp',
 		format = 'I8',
 		size = {
-			w = 32,
-			h = 384
+			w = 384,
+			h = 32
 		},
 		scale = '1',
 		frameTags = {

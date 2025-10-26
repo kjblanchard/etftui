@@ -42,20 +42,25 @@ local function playerInput()
     local moved = false
     local velocityX = 0
     local velocityY = 0
+    local direction = player.direction
     if engine.Input.KeyboardKeyDown(engine.Input.Buttons.UP) then
         velocityY = -1
         moved = true
+        direction = Directions.up
     end
     if engine.Input.KeyboardKeyDown(engine.Input.Buttons.RIGHT) then
         velocityX = 1
         moved = true
+        direction = Directions.right
     end
     if engine.Input.KeyboardKeyDown(engine.Input.Buttons.LEFT) then
         velocityX = -1
         moved = true
+        direction = Directions.left
     end
     if engine.Input.KeyboardKeyDown(engine.Input.Buttons.DOWN) then
         velocityY = 1
+        direction = Directions.down
         moved = true
     end
     local animatorSpeed = 0
@@ -64,7 +69,10 @@ local function playerInput()
         player.x = player.x + velocityX * player.moveSpeed * delta
         player.y = player.y + velocityY * player.moveSpeed * delta
         engine.Gameobject.SetPosition(player.playerGO, player.x, player.y)
-        setPlayerDirection(player)
+        if direction ~= player.direction then
+            player.direction = direction
+            setPlayerDirection(player)
+        end
         animatorSpeed = 1.0
     end
     engine.Animation.SetAnimatorSpeed(player.playerAnimator, animatorSpeed)
@@ -89,3 +97,4 @@ player.playerGO = engine.Gameobject.CreateGameObject()
 engine.Gameobject.SetPosition(player.playerGO, 40, 40)
 player.playerSprite = engine.Sprite.NewSprite("player1", player.playerGO, { 0, 0, 32, 32 }, { 0, 0, 32, 32 })
 player.playerAnimator = engine.Animation.CreateAnimator("player1", player.playerSprite)
+engine.Sprite.SetScale(player.playerSprite, 2.0)

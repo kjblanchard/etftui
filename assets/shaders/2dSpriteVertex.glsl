@@ -9,6 +9,7 @@ uniform mat4 projection;
 // New: Source rectangle and texture info
 uniform vec4 srcRect;      // x, y, w, h — pixel coordinates
 uniform vec2 textureSize;  // texture->Width, texture->Height
+// uniform vec4 uvRect;  // texture->Width, texture->Height
 
 void main()
 {
@@ -16,13 +17,17 @@ void main()
     vec2 base = vertex.zw;
 
     // Convert the srcRect from pixel space to normalized texture coordinates
-    vec2 uv0 = srcRect.xy / textureSize;             // bottom-left corner (in UV)
-    vec2 uv1 = (srcRect.xy + srcRect.zw) / textureSize; // top-right corner (in UV)
+    vec2 uv0 = srcRect.xy / textureSize;
+    vec2 uv1 = (srcRect.xy + vec2(srcRect.z, srcRect.w)) / textureSize;
+    TexCoords = mix(vec2(uv0.x, uv0.y), vec2(uv1.x, uv1.y), vertex.zw);
+    // TexCoords = mix(uvRect.xy, uvRect.zw, vertex.zw);
 
-    // If your textures appear vertically flipped, flip the Y mapping:
-    // TexCoords = mix(vec2(uv0.x, uv1.y), vec2(uv1.x, uv0.y), base);
-    // Otherwise, use this line:
-    TexCoords = mix(uv0, uv1, base);
+    // vec2 texel = 0.5 / textureSize;
+    // vec2 uv0 = (srcRect.xy + texel) / textureSize;
+    // vec2 uv1 = (srcRect.xy + srcRect.zw - texel) / textureSize;
+    // TexCoords = uv0 + base * (uv1 - uv0);
+
+
 
     // Regular transform
     gl_Position = projection * view * model * vec4(vertex.xy, 0.0, 1.0);
